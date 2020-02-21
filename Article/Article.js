@@ -112,3 +112,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+function createArticle(ar){
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+  const bttnOpen = document.createElement('span');
+  const bttnClose = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(span);
+  span.appendChild(bttnOpen);
+  span.appendChild(bttnClose);
+
+  article.classList.add('article'); 
+  date.classList.add('date');
+  //bttnOpen.classList.add('article-open');
+  bttnClose.classList.add('close');
+  span.classList.add('expandButton');
+
+  title.textContent = ar.title;
+  date.textContent = ar.date;
+  p1.textContent = ar.firstParagraph;
+  p2.textContent = ar.secondParagraph;
+  p3.textContent = ar.thirdParagraph;
+  bttnOpen.textContent = ('\u2BC6')
+  bttnClose.textContent = ('\u2BC5')
+ // bttnClose.style.display = ('none')
+
+  //Click Event
+ span.addEventListener("click", ()=>{
+     bttnOpen.classList.toggle('close');
+     bttnClose.classList.toggle('close');
+     article.classList.toggle('article-open');
+ })
+
+  return article;
+}
+
+
+const container = document.querySelector('.articles');
+data.forEach((el)=>{
+  container.appendChild(createArticle(el));
+})
+
